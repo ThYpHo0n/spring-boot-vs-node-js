@@ -10,7 +10,7 @@ services:
     env_file:
       - ../db/.env
     ports:
-      - "5000:5432"
+      - "5001:5432"
     deploy:
       resources:
         limits:
@@ -18,7 +18,7 @@ services:
           memory: 250M
         reservations:
           memory: 250M
-    
+
   nginx:
     image: nginx:latest
     volumes:
@@ -37,25 +37,25 @@ services:
           memory: 250M
         reservations:
           memory: 250M
-          
+
   #############################
-  
+
   spring-boot:
-    build: 
+    build:
         context: ../spring-boot-performance
-    depends_on: 
+    depends_on:
       - db-service
     expose:
       - "8080"
     restart: always
-    
-          
+
+
   node-js:
-    build: 
+    build:
         context: ../nodejs-performance
-    depends_on: 
+    depends_on:
       - db-service
     expose:
       - "8080"
     restart: always
-    
+
